@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Página de Login e Registro</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+      }
+    </style>
+  </head>
+  <body
+    class="h-screen bg-gradient-to-r from-blue-400 via-blue-300 to-blue-200"
+  >
+    <div class="flex h-full">
+      <div class="w-1/2 flex items-center justify-center bg-blue-500">
+        <h1 class="text-6xl font-bold text-white">InterAção</h1>
+      </div>
+      <div class="w-1/2 flex items-center justify-center bg-blue-100">
+        <div class="w-full max-w-sm">
+          <div id="loginForm" class="space-y-4">
+            <h2 class="text-3xl font-bold text-gray-700 text-center mb-6">
+              Login
+            </h2>
+            <div class="flex flex-col">
+              <label for="loginUsername" class="text-gray-600">Usuário</label>
+              <input
+                type="text"
+                id="loginUsername"
+                class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                required
+              />
+            </div>
+            <div class="flex flex-col">
+              <label for="loginPassword" class="text-gray-600">Senha</label>
+              <input
+                type="password"
+                id="loginPassword"
+                class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                required
+              />
+            </div>
+            <button
+              type="button"
+              class="w-full bg-indigo-500 text-white py-2 rounded-lg hover:bg-indigo-600 transition duration-300"
+              onclick="login()"
+            >
+              Entrar
+            </button>
+            <p id="loginError" class="text-red-500 text-center mt-4"></p>
+            <p class="text-center">
+              Ainda não tem uma conta?
+              <a href="#" class="text-indigo-500" onclick="showRegister()"
+                >Registre-se aqui</a
+              >
+            </p>
+          </div>
+          <div id="registerForm" class="space-y-4 hidden">
+            <h2 class="text-3xl font-bold text-gray-700 text-center mb-6">
+              Registro
+            </h2>
+            <div class="flex flex-col">
+              <label for="registerUsername" class="text-gray-600"
+                >Usuário</label
+              >
+              <input
+                type="text"
+                id="registerUsername"
+                class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                required
+              />
+            </div>
+            <div class="flex flex-col">
+              <label for="registerPassword" class="text-gray-600">Senha</label>
+              <input
+                type="password"
+                id="registerPassword"
+                class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                required
+              />
+            </div>
+            <button
+              type="button"
+              class="w-full bg-indigo-500 text-white py-2 rounded-lg hover:bg-indigo-600 transition duration-300"
+              onclick="register()"
+            >
+              Registrar
+            </button>
+            <p id="registerError" class="text-red-500 text-center mt-4"></p>
+            <p class="text-center">
+              Já tem uma conta?
+              <a href="#" class="text-indigo-500" onclick="showLogin()"
+                >Faça login aqui</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let users = [];
+
+      function showLogin() {
+        document.getElementById("loginForm").classList.remove("hidden");
+        document.getElementById("registerForm").classList.add("hidden");
+      }
+
+      function showRegister() {
+        document.getElementById("loginForm").classList.add("hidden");
+        document.getElementById("registerForm").classList.remove("hidden");
+      }
+
+      function register() {
+        const username = document.getElementById("registerUsername").value;
+        const password = document.getElementById("registerPassword").value;
+        const registerError = document.getElementById("registerError");
+
+        if (username && password) {
+          const userExists = users.some((user) => user.username === username);
+          if (userExists) {
+            registerError.textContent = "Usuário já existe.";
+          } else {
+            users.push({ username, password });
+            registerError.textContent = "";
+            alert("Registro bem-sucedido!");
+            showLogin();
+          }
+        } else {
+          registerError.textContent = "Preencha todos os campos.";
+        }
+      }
+
+      function login() {
+        const username = document.getElementById("loginUsername").value;
+        const password = document.getElementById("loginPassword").value;
+        const loginError = document.getElementById("loginError");
+        const user = users.find(
+          (user) => user.username === username && user.password === password
+        );
+        if (user) {
+          loginError.textContent = "";
+          alert("Login bem-sucedido!");
+          window.location.href = "home.html";
+        } else {
+          loginError.textContent = "Usuário ou senha incorretos.";
+        }
+      }
+    </script>
+  </body>
+</html>
