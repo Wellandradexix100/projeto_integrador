@@ -59,4 +59,15 @@ document.addEventListener("DOMContentLoaded", function () {
     cardTextInput.value = "";
     cardImageInput.value = "";
   };
+  document.addEventListener("DOMContentLoaded", function () {
+    const sidebar = document.querySelector(".sidebar");
+    const mainContent = document.querySelector(".main-content");
+
+    document
+      .getElementById("toggleSidebar")
+      .addEventListener("click", function () {
+        sidebar.classList.toggle("collapsed");
+        mainContent.classList.toggle("collapsed");
+      });
+  });
 });
