@@ -5,22 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>interAção</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
-  <body>
-    <aside class="sidebar p-6">
+  <body class="bg-gray-100">
+    <aside class="sidebar bg-purple-600 text-white p-6 min-h-screen">
       <h2 class="text-2xl font-bold mb-6">interAção</h2>
       <a href="#" class="block mb-4 text-lg">Emoções</a>
       <a href="#" class="block mb-4 text-lg">Necessidades</a>
       <button class="bg-white text-purple-600 p-2 rounded-full">+</button>
     </aside>
-    <div class="main-content">
-      <div class="top-bar text-white flex justify-between items-center">
+    <div class="main-content p-6">
+      <div
+        class="top-bar text-white bg-purple-600 p-4 flex justify-between items-center"
+      >
         <h1 class="text-xl font-bold">Cards -> Emoções</h1>
       </div>
-      <div class="card-grid"></div>
-      <form id="addCardForm" class="mt-6">
+      <div
+        class="card-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6"
+      ></div>
+      <form id="addCardForm" class="mt-6 bg-white p-6 rounded-lg shadow-lg">
         <input
           type="text"
           id="cardText"
@@ -34,7 +41,12 @@
           accept="image/*"
           class="border border-gray-300 p-2 rounded-lg w-full mb-4"
         />
-        <button type="submit">Adicionar Cartão</button>
+        <button
+          type="submit"
+          class="bg-purple-600 text-white p-2 rounded-lg w-full"
+        >
+          Adicionar Cartão
+        </button>
       </form>
     </div>
     <script src="scripts/script.js"></script>
